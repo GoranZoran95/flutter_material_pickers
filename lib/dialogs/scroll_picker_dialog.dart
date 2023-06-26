@@ -1,6 +1,8 @@
 // Copyright (c) 2018, codegrue. All rights reserved. Use of this source code
 // is governed by the MIT license that can be found in the LICENSE file.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_material_pickers/pickers/scroll_picker.dart';
 
@@ -87,12 +89,16 @@ class _ScrollPickerDialogState<T> extends State<ScrollPickerDialog<T>> {
           setState(
             () => selectedItem = value,
           ),
-          // Navigator.of(context).pop(selectedItem)
+          Timer(
+            Duration(seconds: 1),
+            () {
+              print("IZLAZIM SAD");
+              // Navigator.of(context).pop(selectedItem);
+            },
+          ),
+          //
         },
         transformer: widget.transformer,
-        onSelected: () => {
-          print("selected"),
-          Navigator.of(context).pop(selectedItem)},
       ),
       okPressed: () => Navigator.of(context).pop(selectedItem),
     );

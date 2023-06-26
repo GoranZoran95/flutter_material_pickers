@@ -14,12 +14,10 @@ class ScrollPicker<T> extends StatefulWidget {
     required this.onChanged,
     this.showDivider = true,
     this.transformer,
-    required this.onSelected,
   }) : super(key: key);
 
   // Events
   final ValueChanged<T> onChanged;
-  final void Function() onSelected;
 
   // Variables
   final List<T> items;
@@ -73,6 +71,7 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
           children: <Widget>[
             GestureDetector(
               onTapUp: _itemTapped,
+              onTapCancel: () => print("cancel"),
               child: ListWheelScrollView.useDelegate(
                 childDelegate: ListWheelChildBuilderDelegate(
                     builder: (BuildContext context, int index) {
@@ -133,7 +132,5 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
       selectedValue = newValue;
       widget.onChanged(newValue);
     }
-    print("ASDSAJKDHAS" + index.toString());
-    widget.onSelected;
   }
 }
