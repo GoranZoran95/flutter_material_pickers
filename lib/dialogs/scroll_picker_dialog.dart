@@ -87,9 +87,10 @@ class _ScrollPickerDialogState<T> extends State<ScrollPickerDialog<T>> {
           setState(
             () => selectedItem = value,
           ),
-          Navigator.of(context).pop(selectedItem)
+          // Navigator.of(context).pop(selectedItem)
         },
         transformer: widget.transformer,
+        onDoubleTapped: () => Navigator.of(context).pop(selectedItem),
       ),
       okPressed: () => Navigator.of(context).pop(selectedItem),
     );
