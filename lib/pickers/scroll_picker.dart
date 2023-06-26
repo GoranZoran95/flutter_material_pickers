@@ -73,7 +73,7 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
           children: <Widget>[
             GestureDetector(
               onTapUp: _itemTapped,
-              onDoubleTap: widget.onDoubleTapped,
+              behavior: HitTestBehavior.translucent,
               child: ListWheelScrollView.useDelegate(
                 childDelegate: ListWheelChildBuilderDelegate(
                     builder: (BuildContext context, int index) {
