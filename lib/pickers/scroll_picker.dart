@@ -73,6 +73,7 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
           children: <Widget>[
             GestureDetector(
               onTapUp: _itemTapped,
+              onDoubleTap: widget.onDoubleTapped,
               child: ListWheelScrollView.useDelegate(
                 childDelegate: ListWheelChildBuilderDelegate(
                     builder: (BuildContext context, int index) {
@@ -85,9 +86,10 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
                   final TextStyle? itemStyle =
                       (value == selectedValue) ? selectedStyle : defaultStyle;
 
-                  return GestureDetector(
-                    onDoubleTap: widget.onDoubleTapped,
-                    child: Center(
+                  return Center(
+                    child: GestureDetector(
+                      onDoubleTap: widget.onDoubleTapped,
+                      onTap: () => print('AAAAAAAAAA'),
                       child: Text(widget.transformer?.call(value) ?? '$value',
                           style: itemStyle),
                     ),
