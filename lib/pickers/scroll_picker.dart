@@ -71,28 +71,36 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
           children: <Widget>[
             GestureDetector(
               onTapUp: _itemTapped,
-              onTapCancel: () => print("cancel"),
-              child: ListWheelScrollView.useDelegate(
-                childDelegate: ListWheelChildBuilderDelegate(
-                    builder: (BuildContext context, int index) {
-                  if (index < 0 || index > widget.items.length - 1) {
-                    return null;
-                  }
+              behavior: HitTestBehavior.translucent,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () => print(":TAPOVAN SAM"),
+                    child: Text("TEXT"),
+                  ),
+                  ListWheelScrollView.useDelegate(
+                    childDelegate: ListWheelChildBuilderDelegate(
+                        builder: (BuildContext context, int index) {
+                      if (index < 0 || index > widget.items.length - 1) {
+                        return null;
+                      }
 
-                  var value = widget.items[index];
+                      var value = widget.items[index];
 
-                  final TextStyle? itemStyle =
-                      (value == selectedValue) ? selectedStyle : defaultStyle;
+                      final TextStyle? itemStyle =
+                          (value == selectedValue) ? selectedStyle : defaultStyle;
 
-                  return Center(
-                    child: Text(widget.transformer?.call(value) ?? '$value',
-                        style: itemStyle),
-                  );
-                }),
-                controller: scrollController,
-                itemExtent: itemHeight,
-                onSelectedItemChanged: _onSelectedItemChanged,
-                physics: FixedExtentScrollPhysics(),
+                      return Center(
+                        child: Text(widget.transformer?.call(value) ?? '$value',
+                            style: itemStyle),
+                      );
+                    }),
+                    controller: scrollController,
+                    itemExtent: itemHeight,
+                    onSelectedItemChanged: _onSelectedItemChanged,
+                    physics: FixedExtentScrollPhysics(),
+                  ),
+                ],
               ),
             ),
             Center(child: widget.showDivider ? Divider() : Container()),

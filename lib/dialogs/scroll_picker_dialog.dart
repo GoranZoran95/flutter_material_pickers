@@ -89,13 +89,13 @@ class _ScrollPickerDialogState<T> extends State<ScrollPickerDialog<T>> {
           setState(
             () => selectedItem = value,
           ),
-          Timer(
-            Duration(seconds: 1),
-            () {
-              print("IZLAZIM SAD");
-              // Navigator.of(context).pop(selectedItem);
-            },
-          ),
+          // Timer(
+          //   Duration(seconds: 1),
+          //   () {
+          //     print("IZLAZIM SAD");
+          //     // Navigator.of(context).pop(selectedItem);
+          //   },
+          // ),
           //
         },
         transformer: widget.transformer,
