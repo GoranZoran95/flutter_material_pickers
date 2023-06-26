@@ -133,7 +133,7 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
       selectedValue = newValue;
       widget.onChanged(newValue);
     }
-    print("ASDSAJKDHAS");
+    print("ASDSAJKDHAS" + index.toString());
     widget.onSelected;
   }
 }
