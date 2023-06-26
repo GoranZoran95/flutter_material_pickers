@@ -86,10 +86,11 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
                   final TextStyle? itemStyle =
                       (value == selectedValue) ? selectedStyle : defaultStyle;
 
-                  return Center(
-                    child: GestureDetector(
-                      onDoubleTap: widget.onDoubleTapped,
-                      onTap: () => print('AAAAAAAAAA'),
+                  return GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () => print("AAAAAAA"),
+                    onDoubleTap: widget.onDoubleTapped,
+                    child: Center(
                       child: Text(widget.transformer?.call(value) ?? '$value',
                           style: itemStyle),
                     ),
