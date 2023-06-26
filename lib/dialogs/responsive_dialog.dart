@@ -23,12 +23,12 @@ class ResponsiveDialog extends StatefulWidget
     this.forcePortrait = false,
     double? maxLongSide,
     double? maxShortSide,
-    this.hideButtons = false,
+    this.hideButtons = true,
     this.okPressed,
     this.cancelPressed,
     this.confirmText,
     this.cancelText,
-    this.cancelButtonVisible = true,
+    this.cancelButtonVisible = false,
   })  : title = title ?? "Title Here",
         child = child ?? Text("Content Here"),
         maxLongSide = maxLongSide ?? 600,
@@ -95,47 +95,6 @@ class _ResponsiveDialogState extends State<ResponsiveDialog> {
     );
   }
 
-  Widget actionBar(BuildContext context) {
-    if (widget.hideButtons) return Container();
-
-    var localizations = MaterialLocalizations.of(context);
-
-    return Container(
-      height: kDialogActionBarHeight,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(width: 1.0, color: _headerColor),
-          ),
-        ),
-        child: ButtonBar(
-          children: <Widget>[
-            widget.cancelButtonVisible
-                ? TextButton(
-                    child: Text(
-                      widget.cancelText ?? localizations.cancelButtonLabel,
-                      style: TextStyle(color: _buttonTextColor),
-                    ),
-                    onPressed: () => (widget.cancelPressed == null)
-                        ? Navigator.of(context).pop()
-                        : widget.cancelPressed!(),
-                  )
-                : Container(),
-            TextButton(
-              child: Text(
-                widget.confirmText ?? localizations.okButtonLabel,
-                style: TextStyle(color: _buttonTextColor),
-              ),
-              onPressed: () => (widget.okPressed == null)
-                  ? Navigator.of(context).pop()
-                  : widget.okPressed!(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -172,7 +131,6 @@ class _ResponsiveDialogState extends State<ResponsiveDialog> {
                         child: widget.child,
                       ),
                     ),
-                    actionBar(context),
                   ],
                 );
               case Orientation.landscape:
@@ -185,7 +143,6 @@ class _ResponsiveDialogState extends State<ResponsiveDialog> {
                           Expanded(
                             child: widget.child,
                           ),
-                          actionBar(context),
                         ],
                       ),
                     ),
